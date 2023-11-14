@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinemachine;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class ViewportHandler : MonoBehaviour
     public Constraint constraint = Constraint.Portrait;
     public static ViewportHandler Instance;
     public new Camera camera;
+    public CinemachineVirtualCamera virtualCamera;
 
     private float _width;
     private float _height;
@@ -118,6 +120,7 @@ public class ViewportHandler : MonoBehaviour
         Instance = this;
         ComputeResolution();
     }
+
 
     private void ComputeResolution()
     {
