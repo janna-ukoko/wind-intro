@@ -6,8 +6,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] Joystick _joystick;
-
     private Rigidbody2D _rb;
 
     [SerializeField] float flightSpeed = 10f;
@@ -27,11 +25,21 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        MouseControls();
+
+        HandleTouch();
+
+    }
+
+
     private void FixedUpdate()
     {
         HandleHorizontalFlight();
 
-        HandleTouchMovement();
+        HandleVerticalFlight();
+
     }
 
 
@@ -41,11 +49,17 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void HandleTouchMovement()
+    private void HandleVerticalFlight()
+    {
+        if (_screenIsTouched)
+            _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Lerp(_rb.velocity.y, verticalSpeed, verticalSpeedAcceleration));
+    }
+
+
+    private void HandleTouch()
     {
         foreach (Touch touch in Input.touches)
         {
-
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -58,11 +72,15 @@ public class PlayerController : MonoBehaviour
                         _screenIsTouched = false;
                     break;
             }
-
         }
+    }
 
-        if (_screenIsTouched)
-            _rb.velocity = new Vector2(_rb.velocity.x, 20); // Add acceleration and deceleration
 
+    private void MouseControls()
+    {
+        if (Input.GetMouseButtonDown(0))
+            _screenIsTouched = true;
+        else if (Input.GetMouseButtonUp(0))
+            _screenIsTouched = false;
     }
 }

@@ -288,7 +288,7 @@ Transform:
   - {fileID: 191418174}
   - {fileID: 751011535}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &304832773
 MonoBehaviour:
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 478653299}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +342,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &478653297
 SpriteRenderer:
@@ -423,10 +423,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552bcc1ceea59ab47979ed5e2ed4cc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joystick: {fileID: 0}
-  flightSpeed: 20
+  flightSpeed: 25
   verticalSpeed: 20
-  verticalSpeedAcceleration: 1
+  verticalSpeedAcceleration: 0.5
 --- !u!58 &478653300
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -846,7 +845,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1417271415
 GameObject:
@@ -857,9 +856,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1417271416}
+  - component: {fileID: 1417271418}
   - component: {fileID: 1417271417}
+  - component: {fileID: 1417271419}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -878,7 +879,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1417271417
 MonoBehaviour:
@@ -887,7 +888,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417271415}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d879015e18bf61f409481341997e5e8a, type: 3}
   m_Name: 
@@ -895,17 +896,62 @@ MonoBehaviour:
   _player: {fileID: 478653295}
   _enemyArray:
   - {fileID: 6732808259341916629, guid: adb56a2fbd0f3534692ca91e5d77f612, type: 3}
-  - {fileID: 3073069911324937823, guid: 67d707b5cd8e56341ac35ef9895491f7, type: 3}
+  - {fileID: 8674974792199639000, guid: 2acc88a7053525f4390bbd13bf6cb16b, type: 3}
+  - {fileID: 3297580057791225559, guid: 5053d07b11144804db1ee7d1780a0962, type: 3}
   - {fileID: 7511208599385351094, guid: 5734936b6aa315a40bcc01daf7c9ae92, type: 3}
+  - {fileID: 3073069911324937823, guid: 67d707b5cd8e56341ac35ef9895491f7, type: 3}
   _enemyPositionRangeY:
   - 14
-  - 11.5
-  - 9
-  _minDistanceBetweenEnemiesInAGroup: 20
-  _maxDistanceBetweenEnemiesInAGroup: 30
-  _minSpawnOffsetOfAnEnemyGroup: 100
-  _maxSpawnOffsetOfAnEnemyGroup: 200
-  _maxNoOfEnemiesPerGroup: 3
+  - 12.5
+  - 12.5
+  - 14
+  - 13
+  _minDistanceBetweenEnemiesInAGroup: 15
+  _maxDistanceBetweenEnemiesInAGroup: 25
+  _minSpawnOffsetOfAnEnemyGroup: 75
+  _maxSpawnOffsetOfAnEnemyGroup: 100
+  _maxNoOfEnemiesPerGroup: 5
+--- !u!114 &1417271418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417271415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f771b98e4a0460345b67e1f3d07b3d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 478653295}
+--- !u!114 &1417271419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417271415}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef7d35417f5ef64e9fefafd173092b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 478653295}
+  _coinArray:
+  - {fileID: 4383562977664072084, guid: f442cfc34fca93a489955cb0c8672f0f, type: 3}
+  - {fileID: 3548659018838305486, guid: a2f6a20bb9fa5494bb1bacda530dbf98, type: 3}
+  - {fileID: 3548659018838305486, guid: e9d8b4c1128795a4eae18226676f0991, type: 3}
+  - {fileID: 3548659018838305486, guid: 56ceb96c1f55e7b40b361f8e9ab5aacc, type: 3}
+  _coinPositionRangeY:
+  - 14
+  - 10.5
+  - 14
+  - 14
+  _minDistanceBetweenCoinsInAGroup: 10
+  _maxDistanceBetweenCoinsInAGroup: 20
+  _minSpawnOffsetOfACoinGroup: 75
+  _maxSpawnOffsetOfACoinGroup: 100
+  _maxNoOfCoinsPerGroup: 3
 --- !u!1 &1495580657
 GameObject:
   m_ObjectHideFlags: 0

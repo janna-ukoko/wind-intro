@@ -21,15 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     float _spawnPositionX;
 
-    float _previousSpawnPositionX ;
-
     int randomEnemyInt;
-
-
-    void Start()
-    {
-        _previousSpawnPositionX = _player.transform.position.x; // Make it spawn more towards the player?
-    }
 
 
     private void Update()
@@ -39,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
-        if (_player.transform.position.x > _previousSpawnPositionX)
+        if (_player.transform.position.x > SpawnManager.previousSpawnPositionX)
         {
             SpawnAnEnemyGroup();
         }
@@ -65,11 +57,11 @@ public class EnemySpawner : MonoBehaviour
     {
         var spawnedEnemy = Instantiate(RandomizeEnemy(), transform);
 
-        _spawnPositionX = _previousSpawnPositionX + _spawnOffset;
+        _spawnPositionX = SpawnManager.previousSpawnPositionX + _spawnOffset;
 
         spawnedEnemy.transform.position = new Vector2(_spawnPositionX, RandomizeEnemyPositionY());
 
-        _previousSpawnPositionX = spawnedEnemy.transform.position.x;
+        SpawnManager.previousSpawnPositionX = spawnedEnemy.transform.position.x;
     }
 
     #endregion
