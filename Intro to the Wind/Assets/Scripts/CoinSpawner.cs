@@ -84,8 +84,12 @@ public class CoinSpawner : MonoBehaviour
 
 
             SpawnACoin();
-
         }
+
+
+        SpawnManager.coinSpawnsInARow++;
+
+        SpawnManager.canChangeSpawnMode = true;
     }
 
     #endregion

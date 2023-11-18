@@ -23,7 +23,6 @@ public class EnemySpawner : MonoBehaviour
 
     int randomEnemyInt;
 
-
     private void Update()
     {
         SpawnEnemies();
@@ -85,6 +84,10 @@ public class EnemySpawner : MonoBehaviour
             SpawnAnEnemy();
 
         }
+
+        SpawnManager.enemySpawnsInARow++;
+
+        SpawnManager.canChangeSpawnMode = true;
     }
 
     #endregion

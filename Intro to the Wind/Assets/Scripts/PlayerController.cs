@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +18,11 @@ public class PlayerController : MonoBehaviour
     private bool _screenIsTouched;
 
     private int _lastFingerID = -1;
+
+
+    public int CoinCount { get; private set; }
+
+    [SerializeField] private TextMeshProUGUI _coinText;
 
 
     private void Start()
@@ -83,4 +89,17 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
             _screenIsTouched = false;
     }
+
+
+    #region Coin Counter
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            CoinCount += 1;
+            _coinText.text = "Coins: " + CoinCount.ToString();
+        }
+    }
+    #endregion
+
 }
