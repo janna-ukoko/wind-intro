@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
     private int _lastFingerID = -1;
 
 
+    private float _playerStartPositionX;
+
+    public int Score { get; private set; }
+
+    [SerializeField] private TextMeshProUGUI _scoreText;
+
     public int CoinCount { get; private set; }
 
     [SerializeField] private TextMeshProUGUI _coinText;
@@ -28,6 +34,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        _playerStartPositionX = transform.position.x;
+
     }
 
 
@@ -36,6 +45,8 @@ public class PlayerController : MonoBehaviour
         MouseControls();
 
         HandleTouch();
+
+        UpdateScore();
 
     }
 
@@ -91,15 +102,27 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    #region Score Counter
+    private void UpdateScore()
+    {
+        Score = (int)(transform.position.x - _playerStartPositionX);
+
+        _scoreText.text = "Score: " + Score;
+    }
+    #endregion
+
+
     #region Coin Counter
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Coin"))
         {
             CoinCount += 1;
-            _coinText.text = "Coins: " + CoinCount.ToString();
+            _coinText.text = "Coins: " + CoinCount;
         }
     }
     #endregion
+
+
 
 }

@@ -663,6 +663,7 @@ MonoBehaviour:
   flightSpeed: 25
   verticalSpeed: 20
   verticalSpeedAcceleration: 0.5
+  _scoreText: {fileID: 1269161187}
   _coinText: {fileID: 466407334}
 --- !u!58 &478653300
 CircleCollider2D:
