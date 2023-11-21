@@ -23,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     int randomEnemyInt;
 
+
     private void Update()
     {
         SpawnEnemies();

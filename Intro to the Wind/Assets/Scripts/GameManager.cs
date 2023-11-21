@@ -34,13 +34,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PlayerController _player;
 
-    private void Update()
+    private void Start()
     {
-        //CoinManager();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void CoinManager()
+    private void Update()
     {
-        print(_player.CoinCount);
+
     }
+
 }
